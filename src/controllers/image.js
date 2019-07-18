@@ -7,16 +7,25 @@ const { Image, Comment } = require('../models/index');
 
 
 const ctrl = {};
-
+//pinta y renderiza todo en las vistas
 ctrl.index = async (req, res) => {
-    const image = await Image.findOne({filename: {$regex: req.params.image_id}});
-    //console.log(image);
-    const comments = await Comment.find({image_id: image._id});
+    const viewModel = { image: {}, comments: {}};
+    const image = await Image.findOne({ filename: { $regex: req.params.image_id } });
+    if (image) {
+        image.views = image.views + 1;
+        viewModel.image = image;
+        await image.save();
+        //console.log(image);
+        const comments = await Comment.find({ image_id: image._id });
+        viewModel.comments=comments;
+        res.render('image', viewModel);
+    } else {
+        res.redirect('/');
+    }
 
-    res.render('image', {image, comments});
 };
 
-ctrl.create =  (req, res) => {
+ctrl.create = (req, res) => {
 
     const saveImage = async () => {
 
@@ -33,7 +42,7 @@ ctrl.create =  (req, res) => {
             //console.log(req.file);
 
             if (extension === '.png' || extension === '.jpg' || extension == 'jpeg' || extension === '.gif') {
-                
+
                 await fs.rename(imageTempPath, targetPath);
                 const newImg = new Image({
                     title: req.body.title,
@@ -49,7 +58,7 @@ ctrl.create =  (req, res) => {
                 await fs.unlink(imageTempPath);
                 res.status(500).json({ error: 'Solo se puede cargar Imagenes' });
             }
-            
+
         }
 
 
@@ -66,8 +75,8 @@ ctrl.like = (req, res) => {
 
 
 ctrl.comment = async (req, res) => {
-    
-    const image = await Image.findOne({filename: {$regex: req.params.image_id}});
+
+    const image = await Image.findOne({ filename: { $regex: req.params.image_id } });
     if (image) {
         const newComment = new Comment(req.body);
         newComment.gravatar = md5(newComment.email);
@@ -75,10 +84,12 @@ ctrl.comment = async (req, res) => {
         //console.log(newComment);
         await newComment.save();
         res.redirect('/images/' + image.uniqueId);
+    } else {
+        res.redirect('/');
     }
-    
+
     //console.log(newComment);
-    
+
 };
 
 ctrl.remove = (req, res) => {
