@@ -4,8 +4,10 @@ const { randomNumber } = require('../helpers/libs');
 const { Image } = require('../models/index');
 const ctrl = {};
 
-ctrl.index = (req, res) => {
-
+ctrl.index = async (req, res) => {
+    const image = await Image.findOne({filename: {$regex: req.params.image_id}});
+    console.log(image);
+    res.render('image', {image});
 };
 
 ctrl.create =  (req, res) => {
@@ -34,8 +36,8 @@ ctrl.create =  (req, res) => {
                 });
                 //guardamos en la base de datos
                 const imageSaved = await newImg.save();
-                //res.redirect('/images/:image_id');
-                res.send('funciona');
+                res.redirect('/images/' + imgURL);
+                //res.send('funciona');
             } else {
 
                 await fs.unlink(imageTempPath);
