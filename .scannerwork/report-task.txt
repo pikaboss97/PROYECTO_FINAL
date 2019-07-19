@@ -1,0 +1,7 @@
+organization=diego097
+projectKey=diego097_PROYECTO_FINAL
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.27355
+dashboardUrl=https://sonarcloud.io/dashboard?id=diego097_PROYECTO_FINAL
+ceTaskId=AWwJGLfbiIp5_YIhFMXT
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWwJGLfbiIp5_YIhFMXT
