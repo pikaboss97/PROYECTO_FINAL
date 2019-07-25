@@ -8,7 +8,6 @@
     "dev": "nodemon src/index.js",
     "perf": "./node_modules/gatlingjs/dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-    
   },
   "repository": {
     "type": "git",
@@ -30,7 +29,9 @@
     "moment": "^2.24.0",
     "mongoose": "^5.6.5",
     "morgan": "^1.9.1",
-    "multer": "^1.4.2"
+    "multer": "^1.4.2",
+    "socket.io": "^2.2.0",
+    "tttp_d": "^1.0.0"
   },
   "devDependencies": {
     "gatlingjs": "0.0.7",

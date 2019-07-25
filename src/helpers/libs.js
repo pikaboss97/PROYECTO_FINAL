@@ -1,3 +1,4 @@
+//const rand = require('tttp_d');
 const helpers = {};
 
 //crear caracteres aleatorios para nombrar a las imagenes cargadas al servidor
@@ -11,5 +12,7 @@ helpers.randomNumber = () =>{
     return randomNumber;
 
 };
+
+
 
 module.exports = helpers;

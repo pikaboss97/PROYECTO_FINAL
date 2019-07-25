@@ -31,7 +31,7 @@
                 {{{ body }}}
             </div>
             <div class="col-md-4">
-                {{> stats }}
+                {{> chat }}
                 {{> popular }}
                 {{> comments }}
             </div>
@@ -42,8 +42,13 @@
     <!--SCRIPTS-->
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <!-- Socket.io-->
+    <script src="/socket.io/socket.io.js" charset="utf-8"></script>
+
     <!--CUSTOM CODE-->
     <script src="/public/js/scripts.js"></script>
+    <script src="/public/js/main.js"></script>
+
 </body>
 
 </html>

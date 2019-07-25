@@ -11,3 +11,7 @@ body {
 .navbar-brand img {
     width: 60%;
 }
+
+#contentWrap {
+  display: none;
+}
